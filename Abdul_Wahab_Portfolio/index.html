@@ -1,0 +1,1412 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abdul Wahab | Cybersecurity Analyst</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1d4ed8;
+            --secondary: #10b981;
+            --dark: #0f172a;
+            --dark-light: #1e293b;
+            --light: #f8fafc;
+            --gray: #94a3b8;
+            --accent: #8b5cf6;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: var(--light);
+            background-color: var(--dark);
+            overflow-x: hidden;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1, h2, h3, h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-weight: 700;
+            color: var(--light);
+            margin-bottom: 1rem;
+        }
+        
+        h1 {
+            font-size: 3rem;
+        }
+        
+        h2 {
+            font-size: 2.5rem;
+            position: relative;
+            padding-bottom: 0.5rem;
+        }
+        
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 4px;
+            background: var(--primary);
+            border-radius: 2px;
+        }
+        
+        p {
+            color: var(--gray);
+            font-size: 1.1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        section {
+            padding: 5rem 0;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 1.8rem;
+            border-radius: 4px;
+            background: var(--primary);
+            color: var(--light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+        
+        .btn:hover {
+            background: transparent;
+            border-color: var(--primary);
+            color: var(--primary);
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(37, 99, 235, 0.15);
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: var(--light);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+        
+        .section-title h2::after {
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+        }
+        
+        .card {
+            background: var(--dark-light);
+            border-radius: 10px;
+            padding: 1.5rem;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            height: 100%;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Header */
+        header {
+            background: rgba(15, 23, 42, 0.95);
+            box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+        
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 0;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo span {
+            color: var(--primary);
+        }
+        
+        .logo i {
+            margin-right: 0.5rem;
+            color: var(--primary);
+        }
+        
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            text-decoration: none;
+            color: var(--light);
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary);
+        }
+        
+        .hamburger {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+        }
+        
+        .hamburger div {
+            width: 100%;
+            height: 3px;
+            background: var(--light);
+            border-radius: 3px;
+            transition: all 0.3s ease;
+        }
+        
+        /* Hero Section */
+        #hero {
+            padding: 8rem 0 5rem;
+            background: linear-gradient(135deg, rgba(15, 23, 42, 0.9) 0%, rgba(15, 23, 42, 0.8) 100%), 
+                        url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"><rect fill="%231e293b" width="100" height="100"/><path fill="%230f172a" d="M0 0L100 100" stroke-width="0.5"/></svg>');
+            background-size: cover;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+        
+        .hero-text h1 {
+            font-size: 3.5rem;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+        
+        .hero-text h1 span {
+            color: var(--primary);
+        }
+        
+        .hero-text h2 {
+            font-size: 1.8rem;
+            font-weight: 400;
+            margin-bottom: 1.5rem;
+            color: var(--gray);
+        }
+        
+        .hero-text p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .hero-image {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center; /* ensure vertical centering */
+        }
+        
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 350px;
+            height: 350px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            opacity: 0.2;
+            filter: blur(50px);
+            z-index: -1;
+        }
+        
+        /* --- ONLY CHANGED BELOW: PROFILE IMAGE ALIGNMENT --- */
+        .hero-image img {
+            width: 290px;
+            height: 290px;
+            border-radius: 50%;
+            object-fit: cover;
+            object-position: center top; /* shift image upward */
+            display: block;
+            margin: 0 auto;
+            border: 5px solid var(--dark-light);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        /* --- END CHANGE --- */
+        
+        /* About Section */
+        #about {
+            background: var(--dark-light);
+        }
+        
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .about-text p {
+            margin-bottom: 1.5rem;
+        }
+        
+        .about-details h3 {
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+        
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .skill-item {
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.8rem 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--primary);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-item:hover {
+            transform: translateX(5px);
+        }
+
+        /* Tools & Technologies section (added) */
+        #tools {
+            /* same spacing as other sections */
+        }
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+            gap: 1rem;
+            align-items: stretch;
+        }
+        .tool-item {
+            background: var(--dark-light);
+            border-radius: 8px;
+            padding: 14px;
+            display: flex;
+            gap: 12px;
+            align-items: center;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+        }
+        .tool-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            color: #fff;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        .tool-info { display: flex; flex-direction: column; gap: 3px; }
+        .tool-name { font-weight: 700; color: var(--light); font-size: 0.98rem; }
+        .tool-desc { color: var(--gray); font-size: 0.9rem; }
+
+        
+        /* Experience Section */
+        #experience {
+            position: relative;
+        }
+        
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::after {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background: var(--primary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--dark);
+            border: 4px solid var(--primary);
+            border-radius: 50%;
+            top: 20px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+        
+        .timeline-content {
+            padding: 1.5rem;
+            background: var(--dark-light);
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        
+        .timeline-content .date {
+            color: var(--secondary);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        
+        .timeline-content p {
+            margin-bottom: 0;
+        }
+        
+        /* Projects Section */
+        #projects {
+            background: var(--dark-light);
+        }
+        
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        
+        .project-card {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .project-img {
+            height: 200px;
+            background: linear-gradient(45deg, var(--primary), var(--accent));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px 8px 0 0;
+            overflow: hidden;
+        }
+        
+        .project-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .project-card:hover .project-img img {
+            transform: scale(1.05);
+        }
+        
+        .project-content {
+            padding: 1.5rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .project-content h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.3rem;
+        }
+        
+        .project-content p {
+            margin-bottom: 1.5rem;
+            flex-grow: 1;
+        }
+        
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .project-tag {
+            background: rgba(37, 99, 235, 0.1);
+            color: var(--primary);
+            padding: 0.3rem 0.7rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+        
+        .project-links a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: color 0.3s ease;
+        }
+        
+        .project-links a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Certifications Section */
+        .certs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        
+        .cert-card {
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+        
+        .cert-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .cert-icon {
+            font-size: 3rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        
+        .cert-card h3 {
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        
+        .cert-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        
+        .cert-card a:hover {
+            color: var(--secondary);
+        }
+        
+        /* Contact Section */
+        #contact {
+            background: var(--dark-light);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+        
+        .contact-info h2 {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info p {
+            margin-bottom: 2rem;
+        }
+        
+        .contact-info-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .contact-info-item i {
+            font-size: 1.5rem;
+            color: var(--primary);
+            width: 40px;
+            height: 40px;
+            background: rgba(37, 99, 235, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border: none;
+            border-radius: 6px;
+            background: var(--dark);
+            color: var(--light);
+            font-family: 'Inter', sans-serif;
+        }
+        
+        .contact-form textarea {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .contact-form button {
+            width: 100%;
+            padding: 1rem;
+            border: none;
+            border-radius: 6px;
+            background: var(--primary);
+            color: var(--light);
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .contact-form button:hover {
+            background: var(--primary-dark);
+        }
+
+        /* ------------------ IMPROVED FOOTER STYLES (REPLACED) ------------------ */
+        footer#contact {
+            background: linear-gradient(180deg, rgba(8,12,20,0.98), rgba(12,16,24,0.98));
+            border-top: 1px solid rgba(255,255,255,0.03);
+            color: var(--light);
+            padding: 48px 0;
+            margin-top: 30px;
+        }
+
+        .footer-container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 16px;
+            align-items: center;
+        }
+
+        .footer-brand {
+            display:flex;
+            flex-direction:column;
+            gap:6px;
+            align-items:flex-start;
+        }
+        .footer-brand .logo {
+            font-family:'JetBrains Mono', monospace;
+            font-weight:800;
+            font-size:26px;
+            color:var(--light);
+            letter-spacing:.4px;
+        }
+        .footer-brand .logo .dot { color: var(--primary); margin-left:4px; }
+        .footer-brand .tag { color:var(--gray); font-size:14px; max-width:520px; }
+
+        .footer-socials {
+            display:flex;
+            gap:12px;
+            align-items:center;
+            justify-content:center;
+        }
+
+        .social-btn {
+            display:inline-flex;
+            align-items:center;
+            justify-content:center;
+            width:40px;
+            height:40px;
+            border-radius:6px;
+            background: #fff;
+            color: var(--dark);
+            text-decoration:none;
+            font-size:16px;
+            border: 1px solid rgba(0,0,0,0.06);
+            box-shadow: 0 8px 20px rgba(2,6,23,0.5);
+            transition: transform .18s ease, background .18s ease, color .18s ease;
+        }
+
+        .social-btn:hover {
+            transform: translateY(-4px);
+            background: linear-gradient(90deg,var(--primary),var(--accent));
+            color: #fff;
+            box-shadow: 0 12px 36px rgba(37,99,235,0.12);
+            border-color: rgba(255,255,255,0.06);
+        }
+
+        .footer-right {
+            display:flex;
+            justify-content:flex-end;
+            align-items:center;
+            gap:12px;
+            color:var(--gray);
+            font-size:13px;
+        }
+
+        .footer-bottom {
+            margin-top:20px;
+            border-top:1px solid rgba(255,255,255,0.03);
+            padding-top:14px;
+            display:flex;
+            justify-content:space-between;
+            gap:12px;
+            align-items:center;
+            color:var(--gray);
+            font-size:13px;
+            flex-wrap:wrap;
+        }
+
+        @media (max-width:880px) {
+            .footer-grid { grid-template-columns: 1fr; text-align:center; }
+            .footer-brand { align-items:center }
+            .footer-right { justify-content:center; }
+            .footer-bottom { flex-direction:column; gap:10px; text-align:center; }
+        }
+        /* ------------------ END FOOTER ------------------ */
+
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            color: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background: var(--primary-dark);
+            transform: translateY(-5px);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .hero-grid,
+            .about-grid,
+            .contact-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .hero-text h1 {
+                font-size: 2.8rem;
+            }
+            
+            .timeline::after {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 22px;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            h2 {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                background: var(--dark-light);
+                width: 250px;
+                height: calc(100vh - 70px);
+                flex-direction: column;
+                padding: 2rem;
+                transition: right 0.3s ease;
+                box-shadow: -5px 0 15px rgba(0, 0, 0, 0.2);
+            }
+            
+            .nav-links.active {
+                right: 0;
+            }
+            
+            .hamburger {
+                display: flex;
+            }
+            
+            .hamburger.active div:nth-child(1) {
+                transform: rotate(45deg) translate(5px, 8px);
+            }
+            
+            .hamburger.active div:nth-child(2) {
+                opacity: 0;
+            }
+            
+            .hamburger.active div:nth-child(3) {
+                transform: rotate(-45deg) translate(5px, -8px);
+            }
+            
+            .projects-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            .hero-buttons .btn {
+                width: 100%;
+                text-align: center;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero-text h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero-text h2 {
+                font-size: 1.5rem;
+            }
+            
+            .hero-image img {
+                width: 250px;
+                height: 250px;
+            }
+            
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
+            .tools-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header -->
+    <header>
+        <div class="container nav-container">
+            <a href="#hero" class="logo"><i class="fas fa-shield-alt"></i>AW<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#hero" class="active">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#certifications">Certifications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+            <div class="hamburger">
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="hero">
+        <div class="container hero-grid">
+            <div class="hero-text">
+                <h1>Hi, I'm <span>Abdul Wahab</span></h1>
+                <h2>Cybersecurity Analyst</h2>
+                <p>I specialize in threat detection, vulnerability management, and network defense. Passionate about securing digital environments and continuously expanding cybersecurity expertise.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn">Get In Touch</a>
+
+                </div>
+            </div>
+            <div class="hero-image">
+                <!-- Profile Picture -->
+                <img src="images/profile.png" alt="Abdul Wahab">
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>About Me</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-text">
+                    <p><strong>I’m Abdul Wahab</strong>, a passionate and results-driven Cybersecurity Analyst currently in the final year of my <strong>B.Sc. in Cyber Security</strong> at Air University Aerospace & Aviation Campus, Kamra. I bring hands-on experience in ethical hacking, digital forensics, threat hunting, and incident response, with a strong focus on building secure systems and defending networks against cyber threats.</p>
+                    <p>Over the course of my studies and internships, I have developed expertise in <strong>SIEM integration, vulnerability assessment, security automation, and implementing Zero Trust Architecture principles</strong> to enhance organizational security postures.</p>
+                    <p><strong>Roles of Interest:</strong> SOC Analyst, Penetration Tester, GRC Consultant, and Cybersecurity Analyst.</p>
+                    <p><strong>Freelance: Available</strong> – Open to collaborations, internships, job opportunities (remote or on-site), and freelance cybersecurity projects.</p>
+                </div>
+                <div class="about-details">
+                    <h3>Core Expertise</h3>
+                    <div class="skills-grid">
+                        <div class="skill-item">Vulnerability Assessment</div>
+                        <div class="skill-item">Penetration Testing</div>
+                        <div class="skill-item">Digital Forensics</div>
+                        <div class="skill-item">SIEM & SOAR</div>
+                        <div class="skill-item">Threat Hunting</div>
+                        <div class="skill-item">Network Security</div>
+                        <div class="skill-item">Web Application Security</div>
+                        <div class="skill-item">Incident Response</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Tools & Technologies (ADDED) -->
+    <section id="tools">
+      <div class="container">
+        <div class="section-title">
+          <h2>Tools & Technologies</h2>
+        </div>
+
+        <p style="text-align:center; color:var(--gray); max-width:900px; margin:0 auto 1.5rem;">
+          Practical tools and technologies I use frequently while conducting assessments, building labs, and performing incident response.
+        </p>
+
+        <div class="tools-grid">
+            <div class="tool-item">
+                <div class="tool-icon" title="Wazuh"><i class="fas fa-server"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Wazuh SIEM</div>
+                    <div class="tool-desc">Log collection, detection & monitoring</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="nmap"><i class="fas fa-search"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">nmap</div>
+                    <div class="tool-desc">Network scanning & discovery</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Kali / Ubuntu"><i class="fab fa-linux"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Kali · Ubuntu</div>
+                    <div class="tool-desc">Pen-testing & server environments</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="pfSense"><i class="fas fa-network-wired"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">pfSense</div>
+                    <div class="tool-desc">Firewall & edge routing</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Suricata IDS"><i class="fas fa-shield-alt"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Suricata IDS</div>
+                    <div class="tool-desc">Network intrusion detection</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="OpenVAS"><i class="fas fa-bullseye"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">OpenVAS</div>
+                    <div class="tool-desc">Vulnerability scanning</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Burp Suite"><i class="fas fa-bug"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Burp Suite</div>
+                    <div class="tool-desc">Web application testing</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Metasploit"><i class="fas fa-bolt"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Metasploit</div>
+                    <div class="tool-desc">Exploit development & testing</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="C++"><i class="fas fa-code"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">C++</div>
+                    <div class="tool-desc">Low-level tooling & POCs</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Python"><i class="fab fa-python"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Python</div>
+                    <div class="tool-desc">Automation, parsing & scripts</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="OWASP ZAP"><i class="fas fa-shield-virus"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">OWASP ZAP</div>
+                    <div class="tool-desc">Automated web scanning</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Wireshark"><i class="fas fa-wifi"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Wireshark</div>
+                    <div class="tool-desc">Packet capture & analysis</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="sqlmap"><i class="fas fa-database"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">sqlmap</div>
+                    <div class="tool-desc">Automated SQL injection testing</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Nessus"><i class="fas fa-shield"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Nessus</div>
+                    <div class="tool-desc">Enterprise vulnerability scanning</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Docker"><i class="fab fa-docker"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Docker</div>
+                    <div class="tool-desc">Containerization & lab environments</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="Autopsy"><i class="fas fa-folder-open"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">Autopsy</div>
+                    <div class="tool-desc">Forensic analysis & timeline building</div>
+                </div>
+            </div>
+
+            <div class="tool-item">
+                <div class="tool-icon" title="FTK Imager"><i class="fas fa-file"></i></div>
+                <div class="tool-info">
+                    <div class="tool-name">FTK Imager</div>
+                    <div class="tool-desc">Forensic image acquisition</div>
+                </div>
+            </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Experience</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>SOC Analyst Intern</h3>
+                        <span class="date">Cyborts | Jul 2025 - Aug 2025</span>
+                        <p>Optimized SOC operations through deployment of File Integrity Monitoring (FIM) with Wazuh. Integrated Suricata, pfSense firewall, Microsoft Defender, and VirusTotal to enhance threat visibility. Installed and configured Wazuh agents to bolster detection capabilities.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Cybersecurity Intern</h3>
+                        <span class="date">CAA (Pakistan) | Aug 2025 - Sep 2025</span>
+                        <p>Worked on multiple database-driven projects using MySQL and SQLite. Developed feedback forms and an AI-powered web application with object detection and face recognition capabilities. Configured ESXi and MikroTik environments to manage VMs and enforce network policies.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-title">
+                <h2>Featured Projects</h2>
+            </div>
+            <div class="projects-grid">
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/virustotal-integration.png" alt="VirusTotal Integration">
+                    </div>
+                    <div class="project-content">
+                        <h3>VirusTotal Integration with Wazuh</h3>
+                        <p>Implemented VirusTotal API integration with Wazuh SIEM to automatically enrich suspicious file hashes and URLs with threat intelligence, reducing manual investigation time.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Threat Intelligence</span>
+                            <span class="project-tag">API Integration</span>
+                            <span class="project-tag">SIEM</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_integrating-virustotal-with-wazuh-activity-7359844579258376192-7HrW" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/microsoft defender integration.png" alt="Microsoft Defender Integration">
+                    </div>
+                    <div class="project-content">
+                        <h3>Microsoft Defender Integration with Wazuh</h3>
+                        <p>Linked Microsoft Defender telemetry into Wazuh SIEM to consolidate endpoint protection data and improve detection of malware, phishing, and other endpoint-based attacks.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Endpoint Protection</span>
+                            <span class="project-tag">SIEM</span>
+                            <span class="project-tag">Integration</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_integrating-windows-defender-with-wazuh-siem-activity-7357331346223951873-LSbc" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/pFSense integration.png" alt="pfSense Integration">
+                    </div>
+                    <div class="project-content">
+                        <h3>pfSense Firewall Integration with Wazuh</h3>
+                        <p>Connected pfSense firewall logs to Wazuh SIEM for centralized monitoring of network access controls, firewall rules, and intrusion attempts, strengthening network security posture.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Firewall</span>
+                            <span class="project-tag">SIEM</span>
+                            <span class="project-tag">Network Security</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_pfsense-firewall-integration-with-wazuh-siem-activity-7354122095980617730-d2jR" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/Suricata IDS integration.png" alt="Suricata Integration">
+                    </div>
+                    <div class="project-content">
+                        <h3>Suricata IDS Integration with Wazuh</h3>
+                        <p>Integrated Suricata intrusion detection system with Wazuh SIEM to ingest and correlate network traffic events, improving visibility into potential threats and enhancing incident response.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">IDS</span>
+                            <span class="project-tag">SIEM</span>
+                            <span class="project-tag">Network Security</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="#" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/Enabling FIM monitoring.png" alt="File Integrity Monitoring">
+                    </div>
+                    <div class="project-content">
+                        <h3>File Integrity Monitoring on Wazuh</h3>
+                        <p>Enabled file integrity monitoring to track changes and secure sensitive data across Windows and Ubuntu systems using Wazuh agents.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">FIM</span>
+                            <span class="project-tag">Security</span>
+                            <span class="project-tag">Monitoring</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_enabling-file-integrity-moniroting-on-wazuh-activity-7350110036737622016--KIJ" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card project-card">
+                    <div class="project-img">
+                        <img src="images/Configuring Wazuh Agents.png" alt="Wazuh Agent Installation">
+                    </div>
+                    <div class="project-content">
+                        <h3>Wazuh Agent Installation & Configuration</h3>
+                        <p>Installed and enrolled Wazuh agents on Windows and Linux systems, enabling real-time monitoring, file integrity checks, and threat detection from distributed endpoints.</p>
+                        <div class="project-tags">
+                            <span class="project-tag">Endpoint Security</span>
+                            <span class="project-tag">Monitoring</span>
+                        </div>
+                        <div class="project-links">
+                            <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_wazuh-agent-installation-configuration-activity-7348313246304526336-115x" target="_blank"><i class="fas fa-external-link-alt"></i> View Project</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Certifications Section -->
+    <section id="certifications">
+        <div class="container">
+            <div class="section-title">
+                <h2>Certifications</h2>
+            </div>
+            <div class="certs-grid">
+                <div class="card cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3>Hands-On WebApp Pentesting</h3>
+                    <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_hands-on-web-app-pentesting-course-certificate-activity-7337063450851893248-y8LV" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certification</a>
+                </div>
+
+                <div class="card cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-robot"></i>
+                    </div>
+                    <h3>AI For Everyone</h3>
+                    <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_ai-for-everyone-certification-achievement-activity-7292081809410932737-t5DS" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certification</a>
+                </div>
+
+                <div class="card cert-card">
+                    <div class="cert-icon">
+                        <i class="fas fa-cloud"></i>
+                    </div>
+                    <h3>Cloud Security Foundation (AWS)</h3>
+                    <a href="https://www.linkedin.com/posts/abdul-wahab-cyber49_aws-certificate-activity-7291720849424871424-pmOD" target="_blank"><i class="fas fa-external-link-alt"></i> Verify Certification</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Footer (REPLACED) -->
+    <footer id="contact" class="footer" role="contentinfo">
+      <div class="footer-container">
+        <div class="footer-grid">
+          <div class="footer-brand">
+            <div class="logo">Wahab<span class="dot">.</span></div>
+            <div class="tag">SOC Analyst | Cybersecurity Specialist | Penetration Tester | Developer</div>
+          </div>
+
+          <div class="footer-socials" role="navigation" aria-label="Contact and social links">
+            <!-- Email -->
+            <a class="social-btn" href="mailto:awahab1033@gmail.com" aria-label="Email Abdul Wahab" title="Email">
+              <i class="fas fa-envelope"></i>
+            </a>
+
+            <!-- Phone -->
+            <a class="social-btn" href="tel:+923193617244" aria-label="Call Abdul Wahab" title="Call">
+              <i class="fas fa-phone"></i>
+            </a>
+
+            <!-- LinkedIn -->
+            <a class="social-btn" href="https://www.linkedin.com/in/abdul-wahab-cyber49/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn profile" title="LinkedIn">
+              <i class="fab fa-linkedin"></i>
+            </a>
+          </div>
+
+          <div class="footer-right">
+            <div>Designed By Abdul Wahab</div>
+          </div>
+        </div>
+
+        <div class="footer-bottom">
+          <div>&copy; 2025 Wahab. All rights reserved.</div>
+          <div style="opacity:.9;color:var(--gray);font-size:13px;">Available for contract & freelance work</div>
+        </div>
+      </div>
+    </footer>
+
+
+    <a href="#hero" class="back-to-top" id="backToTop">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Mobile navigation toggle
+            const hamburger = document.querySelector('.hamburger');
+            const navLinks = document.querySelector('.nav-links');
+            
+            hamburger.addEventListener('click', () => {
+                hamburger.classList.toggle('active');
+                navLinks.classList.toggle('active');
+            });
+            
+            // Close mobile menu when clicking on a link
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburger.classList.remove('active');
+                    navLinks.classList.remove('active');
+                });
+            });
+            
+            // Back to top button
+            const backToTopButton = document.getElementById('backToTop');
+            
+            window.addEventListener('scroll', () => {
+                if (window.pageYOffset > 300) {
+                    backToTopButton.classList.add('visible');
+                } else {
+                    backToTopButton.classList.remove('visible');
+                }
+            });
+            
+            backToTopButton.addEventListener('click', (e) => {
+                e.preventDefault();
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+            
+            // Active navigation link based on scroll position (including footer)
+            const sections = document.querySelectorAll('section, footer#contact');
+            const navLinksList = document.querySelectorAll('.nav-links a');
+            
+            window.addEventListener('scroll', () => {
+                let current = '';
+                
+                sections.forEach(section => {
+                    const sectionTop = section.offsetTop;
+                    const sectionHeight = section.clientHeight;
+                    
+                    if (pageYOffset >= sectionTop - 200) {
+                        current = section.getAttribute('id');
+                    }
+                });
+                
+                navLinksList.forEach(link => {
+                    link.classList.remove('active');
+                    if (link.getAttribute('href').substring(1) === current) {
+                        link.classList.add('active');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
